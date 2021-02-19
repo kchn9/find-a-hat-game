@@ -77,7 +77,7 @@ class Field {
                     this.playerCol += 1;
                     break;
                 default:
-                    console.log('Invalid input! Accepted values are: u / r / d / l');
+                    console.log('Invalid input! Accepted values are: u / r / d / l.');
                     return;
             }
         } catch (e) {
@@ -150,7 +150,7 @@ if (isNaN(width) || isNaN(height) || isNaN(holePercent)) {
 const acceptedDifficulties = ['easy', 'medium', 'hard'];
 let difficulty = prompt('Enter difficulty: [easy/medium/hard]: ').toLowerCase();
 if (!acceptedDifficulties.includes(difficulty)) {
-    console.log('Invalid difficulty! Setting mode to easy.');
+    console.log('Invalid difficulty! Set mode to easy.');
     difficulty = 'easy';
 }
 
