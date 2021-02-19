@@ -6,7 +6,8 @@
   "author": "Codecademy",
   "license": "MIT",
   "dependencies": {
-    "prompt-sync": "^4.1.7"
+    "prompt-sync": "^4.1.7",
+    "terminal-kit": "^1.49.2"
   },
   "devDependencies": {},
   "scripts": {
