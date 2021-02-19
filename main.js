@@ -56,6 +56,7 @@ class Field {
         }
     }
 
+    // main game function
     move(direction) {
         try {
             let expr = direction.toString()[0].toLowerCase();
@@ -73,8 +74,8 @@ class Field {
                     this.playerCol += 1;
                     break;
                 default:
-                    console.log('Invalid input!');
-                    break;
+                    console.log('Invalid input! Accepted values are: u / r / d / l');
+                    return;
             }
         } catch (e) {
             return;
@@ -98,6 +99,32 @@ class Field {
         }
         this.field[this.playerRow][this.playerCol] = pathCharacter;
     }
+
+    // depending of mode it makes game harder after every move
+    addHole(mode) {
+        // default for easy - do not add any holes
+        let threshold = 1;
+        mode = mode.toLowerCase();
+        switch (mode) {
+            case 'medium':
+                threshold = 0.94;
+                break;
+            case 'hard':
+                threshold = 0.88;
+                break;
+            default:
+                break;
+        }
+        let rand;
+        for (let i = 0; i < this.field.length; i++) {
+            for (let j = 0; j < this.field[0].length; j++) {
+                rand = Math.random()
+                if (this.field[i][j] === fieldCharacter && rand > threshold) {
+                    return this.field[i][j] = hole;
+                }
+            }
+        }
+    }
 }
 
 //set field width and height
@@ -105,11 +132,19 @@ let width = parseInt(prompt('Enter field width: '));
 let height = parseInt(prompt('Enter field height: '));
 let holePercent = parseFloat(prompt('Enter hole percent: '));
 
+//if input is wrong, use default inputs
 if (isNaN(width) || isNaN(height) || isNaN(holePercent)) {
     console.log('Invalid input! Using default dimensions. [5x5 with 50%]');
     width = 5;
     height = 5;
     holePercent = 50.0;
+}
+
+const acceptedDifficulties = ['easy', 'medium', 'hard'];
+let difficulty = prompt('Enter difficulty: [easy/medium/hard]: ').toLowerCase();
+if (!acceptedDifficulties.includes(difficulty)) {
+    console.log('Invalid difficulty! Setting mode to easy.');
+    difficulty = 'easy';
 }
 
 //generate field
@@ -121,6 +156,7 @@ let dir;
 do {
     dir = prompt('Which way? ');
     field.move(dir);
+    field.addHole(difficulty);
     field.print();
 } while (field.inProgress);
 

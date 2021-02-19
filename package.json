@@ -4,8 +4,23 @@
   "description": "A terminal maze-solving game.",
   "main": "main.js",
   "author": "Codecademy",
-  "license": "ISC",
+  "license": "MIT",
   "dependencies": {
     "prompt-sync": "^4.1.7"
-  }
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "mocha"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/kchn9/find-a-hat-game.git"
+  },
+  "keywords": [
+    "none"
+  ],
+  "bugs": {
+    "url": "https://github.com/kchn9/find-a-hat-game/issues"
+  },
+  "homepage": "https://github.com/kchn9/find-a-hat-game#readme"
 }
