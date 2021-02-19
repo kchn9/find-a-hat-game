@@ -58,6 +58,9 @@ class Field {
 
     // main game function
     move(direction) {
+        // get old position of player
+        let oldRow = this.playerRow;
+        let oldCol = this.playerCol;
         try {
             let expr = direction.toString()[0].toLowerCase();
             switch (expr) {
@@ -80,6 +83,10 @@ class Field {
         } catch (e) {
             return;
         }
+
+        //draw field after the player
+        this.field[oldRow][oldCol] = fieldCharacter;
+
         //don't paint path player is outside map
         if (this.playerRow < 0 || this.playerCol < 0 || this.playerCol >= this.field.length || this.playerRow >= this.field[0].length) {
             this.inProgress = false;
